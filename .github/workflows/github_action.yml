@@ -53,7 +53,7 @@ jobs:
       #15
       - run: flutter build apk
       - run: |
-          flutter build ios --no-codesign
+          flutter build ios
           cd build/ios/iphoneos
           mkdir Payload
           cd Payload
