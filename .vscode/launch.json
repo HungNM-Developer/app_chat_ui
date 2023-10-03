@@ -5,21 +5,44 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "app_chat_ui",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "app_chat_ui (profile mode)",
+            "name": "dev",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "app_chat_ui (release mode)",
+            "args": ["--dart-define", "APP_NAME=[dev] app_chat_ui", "--dart-define", "APP_SUFFIX=.dev"]
+       },
+       {
+            "name": "staging",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
-        }
+            "args": ["--dart-define", "APP_NAME=[stg] app_chat_ui", "--dart-define", "APP_SUFFIX=.stg"]
+       },
+       {
+            "name": "product",
+            "request": "launch",
+            "type": "dart",
+            "args": ["--dart-define", "APP_NAME=app_chat_ui"]
+       },
+        // {
+        //     // 1   
+        //     "name": "dev",
+        //     // 2
+        //     "request": "launch",
+        //     // 3
+        //     "type": "dart",
+        //      // 4
+        //     "args": ["--flavor", "dev"]
+        // },
+        // {
+        //     "name": "staging",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "args": ["--flavor", "staging"]
+        // },
+        // {
+        //     "name": "product",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "args": ["--flavor", "product"]
+        // }
     ]
 }

@@ -35,6 +35,7 @@ jobs:
       #- uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3
       # Reference the major version of a release
       - uses: actions/checkout@v4
+      # When project use FVM
       - uses: kuhnroyal/flutter-fvm-config-action@v1
         id: fvm-config-action
       # Reference a specific version
@@ -49,11 +50,12 @@ jobs:
       #12
       - uses: subosito/flutter-action@v2
         with:
+          # When project use FVM
           flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
           channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
           # channel: 'stable'
       # #13
-      # - run: fvm flutter pub get
+      - run: flutter pub get
    
       #15
       - run: flutter build apk

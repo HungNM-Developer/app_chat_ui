@@ -8,6 +8,24 @@ import Flutter
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+      guard let controller = window?.rootViewController as? FlutterViewController else {
+          return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+      }
+      let flavorChannel = FlutterMethodChannel(name: "demo", binaryMessenger: controller.binaryMessenger)
+      flavorChannel.setMethodCallHandler({(call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+          switch call.method {
+          case "getPackage":
+              let bundleId = Bundle.main.infoDictionary?["CFBundleIdentifier"]
+              result(bundleId)
+          // NOTE: Add new case
+          case "getFlavor":
+              let flavor = Bundle.main.infoDictionary?["AppFlavor"]
+              result(flavor)
+          default:
+              result(FlutterMethodNotImplemented)
+          }
+      })
+      return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  
   }
 }

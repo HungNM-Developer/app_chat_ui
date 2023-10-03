@@ -1,9 +1,25 @@
+import 'package:app_chat_ui/config/app_flavor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+import 'config/enviroment_config.dart';
+import 'config/flavor_config.dart';
 import 'screens/welcome/welcome_screen.dart';
 import 'theme.dart';
 
-void main() {
+// 1
+Future<void> main() async {
+  // 2
+  WidgetsFlutterBinding.ensureInitialized();
+  // final package = await const MethodChannel('app_chat_ui')
+  //     .invokeMethod<String>("getPackage");
+  // print(package);
+  // 3
+
+  debugPrint('APP_NAME: ${EnvironmentConfig.appName}');
+  debugPrint('APP_SUFFIX: ${EnvironmentConfig.appSuffix}');
+  final appFlavor = await FlavorConfig().getFlavor();
+  debugPrint('ApiUrl: ${appFlavor?.apiURL}');
   runApp(const MyApp());
 }
 
